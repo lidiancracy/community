@@ -23,5 +23,6 @@
     // 命令是
     git add . 
     git commit -m "sth"
+    git push 是提交到远程仓库
     ```
 
