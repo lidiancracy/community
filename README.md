@@ -43,23 +43,25 @@
       <script src="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     ```
 
-  - 组件[链接]([Dropdowns · Bootstrap v4 中文文档 v4.6 | Bootstrap 中文网 (bootcss.com)](https://v4.bootcss.com/docs/components/dropdowns/))
+  - 组件[链接](https://v4.bootcss.com/docs/components/dropdowns/))
 
 ### github登录授权
 
-- ==ctrl + P是参数提示==
+- ctrl + P是参数提示
 
-- 先创键一个github授权 [API]([Developer applications (github.com)](https://github.com/settings/developers)) 
+- 先创键一个github授权 [API](https://github.com/settings/developers)) 
 
-- 给我们的登录按钮绑定跳转到 github[授权网站](https://github.com/login/oauth/authorize),需要携带一些参数
+  - 给我们的登录按钮绑定跳转到 github[授权网站](https://github.com/login/oauth/authorize) ,需要携带一些参数
 
-  - ```html
-    需要携带 
-    client_id  在我们注册的API上
-    redirect_uri 授权完成后跳转回来的网页（也是在API上），我们直接用本机，因为没有部署服务器
-                    <a class="nav-link" href="https://github.com/login/oauth/authorize?client_id=f4ae598eeffaf516d993&redirect_uri=http://localhost:8080/callback"&scope=user&state=1>登录</a>
-    
-    ```
+    - ```html
+      需要携带 
+      client_id  在我们注册的API上
+      redirect_uri 授权完成后跳转回来的网页（也是在API上），
+      我们直接用本机，因为没有部署服务器
+      <a class="nav-link" 
+      href="https://github.com/login/oauth/authorize?client_id=f4ae598eeffaf516d993
+      &redirect_uri=http://localhost:8080/callback"&scope=user&state=1>登录</a>
+      ```
 
 - github账户密码授权成功后会返回一个code，下一步需要做的是调用access_token接口携带code,获取accesstoken，在根据accesstoken发送请求获取用户信息
 
