@@ -72,4 +72,4 @@
     url("https://api.github.com/user?access_token="+token).header("Authorization","token "+token) 这个是get提交 要加参数   获取user info
     ```
 
-- 成功获取用户信息啦！ 将固定信息放在配置文件里面
+- 成功获取用户信息啦！ 将固定信息放在配置文件里 
