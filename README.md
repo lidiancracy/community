@@ -5,26 +5,26 @@
 
 ### 学习git托管代码
 
-- Https每次push pull代码需要用户名密码 ，SSH方式不用 相当于电脑保存了
+Https每次push pull代码需要用户名密码 ，SSH方式不用 相当于电脑保存了
 
-- 在idea终端 pwd，显示小蓝块名即可，git init 将项目变成git项目
+在idea终端 pwd，显示小蓝块名即可，git init 将项目变成git项目
 
-- git status 查看git当前状态
+git status 查看git当前状态
 
-- ```java
+```java
   git remote rm origin //删除一下，不然可能关联新仓库可能报错
   git config --global http.sslVerify "false" //删除身份认证
   // 然后复制命令就可以将一个我们本地项目导入github仓库了
       
   ```
 
-- 我们新增一个文件后，可以查看git status 然后推送过去
-  - ```java
+我们新增一个文件后，可以查看git status 然后推送过去
+```java
     // 命令是
     git add . 
     git commit -m "sth"
     git push 是提交到远程仓库
-    ```
+```
 
 > 2022/7/21
 
@@ -36,7 +36,7 @@
 
 - 结果测试可以用4版本，cdn导入
 
-  - ```html
+  ```html
       <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
       <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
       <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
@@ -50,16 +50,16 @@
 
 ### github登录授权
 
-- ctrl + P是参数提示
+ctrl + P是参数提示
 
 
-- 先创键一个github授权 [API](https://github.com/settings/developers)
+先创键一个github授权 [API](https://github.com/settings/developers)
 
 
-  - 给我们的登录按钮绑定跳转到 github[授权网站](https://github.com/login/oauth/authorize) ,需要携带一些参数
+给我们的登录按钮绑定跳转到 github[授权网站](https://github.com/login/oauth/authorize) ,需要携带一些参数
 
 
-    - ```html
+```html
       需要携带 
       client_id  在我们注册的API上
       redirect_uri 授权完成后跳转回来的网页（也是在API上），
@@ -67,15 +67,15 @@
       <a class="nav-link" 
       href="https://github.com/login/oauth/authorize?client_id=f4ae598eeffaf516d993
       &redirect_uri=http://localhost:8080/callback"&scope=user&state=1>登录</a>
-      ```
+```
 
-  - ```java
+```
     需要携带 
     client_id  在我们注册的API上
     redirect_uri 授权完成后跳转回来的网页（也是在API上），我们直接用本机，因为没有部署服务器
      <a class="nav-link" href="https://github.com/login/oauth/authorize?client_id=f4ae598eeffaf516d993&redirect_uri=http
      ://localhost:8080/callback"&scope=user&state=1>登录</a>               
-    ```
+```
 
 - github账户密码授权成功后会返回一个code，下一步需要做的是调用access_token接口携带code,获取accesstoken，在根据accesstoken发送请求获取用户信息
 
@@ -93,10 +93,10 @@
 - 成功获取用户信息啦！ 将固定信息放在配置文件里面 :smile:
 
 ### Cookie 和 Session
-- cookie 相当于银行卡，在同一个浏览器登录成功后，浏览器就会将你的身份记住了，除非你主动提出消除cookie记录或者换浏览器登录（去其他银行）
-- 我们return index页面网址会显示最终的网址,后面可能跟一堆? &之类的，我们重定向更加简约
-- if 逻辑可以直接写在html页面上，页面也可以直接获取cookie，因为cookie这东西还想就是给页面用的
-- 目前实现了登录功能，但是每次服务器重启，所有用户“被迫下线”，我们不希望这样，所以需要借助数据库
+cookie 相当于银行卡，在同一个浏览器登录成功后，浏览器就会将你的身份记住了，除非你主动提出消除cookie记录或者换浏览器登录（去其他银行）
+<br>我们return index页面网址会显示最终的网址,后面可能跟一堆? &之类的，我们重定向更加简约
+<br>if 逻辑可以直接写在html页面上，页面也可以直接获取cookie，因为cookie这东西还想就是给页面用的
+<br>目前实现了登录功能，但是每次服务器重启，所有用户“被迫下线”，我们不希望这样，所以需要借助数据库
 
 > 2022/7/22
 #### 实现点击数据导入数据库
