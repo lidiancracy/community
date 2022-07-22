@@ -3,6 +3,7 @@ package com.lidian.community.mapper;
 import com.lidian.community.model.user;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -14,4 +15,6 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface usermapper {
     void insertuser(user user);
+
+    user getuserbytoken(@Param("token") String token);
 }

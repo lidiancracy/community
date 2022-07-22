@@ -107,3 +107,22 @@ cookie 相当于银行卡，在同一个浏览器登录成功后，浏览器就�
 - 没有使用h2数据库了 😃,使用我熟悉的mysql数据库
 - 我可以在idea上面加入emoji啦 [插件](Yet another emoji support)
 - 操作数据库使用mybatis+mapper，真的改了好久，然后主键是自增的
+
+#### 实现登录持久化 
+宕机也不怕😎
+我们首先需要知道，token相当于用户身份证<br>
+我们甚至可以将浏览器中的cookie和jsession删除掉，这样可以重新回到登录页面.`response.addcookie`可以new一个cookie
+然后向里面添加东西，这与网页无关，它永远保存在浏览器本体里面.`request.getcookie`则是可以获取浏览器中的cookie对象，cookie
+不是可以setattr嘛，我们给他设置一个token相当于用户身份证,然后根据token找到user,在session 里面将用户对象设置成属性.
+- 小细节 😡 我也在纳闷数据库和entity里面查询的时候 直接select * 这样行得通吗？毕竟mb又不知道数据库与实体的属性映射关系啊，果然只有同名的赋值了
+其他的都为null
+
+#### 实现发布页面
+做完了静态页面 💗 用到了bootstrap,栅格布局太酷了
+- 实现发布文章功能
+
+
+
+
+
+

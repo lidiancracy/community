@@ -8,4 +8,7 @@
     <insert id="insertuser">
         insert into t_user (account_id, name, token, create_time, modify_time) values (#{accountid},#{name},#{token},#{createtime},#{modifiedtime})
     </insert>
+    <select id="getuserbytoken" resultType="com.lidian.community.model.user">
+        select * from t_user where token=#{token}
+    </select>
 </mapper>
