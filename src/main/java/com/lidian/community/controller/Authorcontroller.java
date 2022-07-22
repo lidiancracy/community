@@ -2,6 +2,8 @@ package com.lidian.community.controller;
 
 import com.lidian.community.DTO.accesstoken;
 import com.lidian.community.DTO.githubuser;
+import com.lidian.community.mapper.usermapper;
+import com.lidian.community.model.user;
 import com.lidian.community.provider.Githubprovider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,8 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.IOException;
-import java.net.http.HttpRequest;
+import java.util.UUID;
+
 
 /**
  * @ClassName Authorcontroller
@@ -29,7 +31,9 @@ public class Authorcontroller {
     private String Client_secret;
     @Value("${github.Redirect_uri}")
     private String Redirect_uri;
-//    etst
+    @Autowired
+    private usermapper usermapper;
+
 
     /**
      * @param code
@@ -37,6 +41,7 @@ public class Authorcontroller {
      */
     @GetMapping("/callback")
     public String callback(@RequestParam(name = "code") String code , HttpServletRequest request) {
+
         accesstoken accesstoken = new accesstoken();
         accesstoken.setCode(code);
         accesstoken.setClient_id(Client_id);
@@ -45,10 +50,18 @@ public class Authorcontroller {
         accesstoken.setRedirect_uri(Redirect_uri);
         String getaccesstoken = gp.getaccesstoken(accesstoken);
 //        获取user对象
-        githubuser user = gp.getuserinfo(getaccesstoken);
-//        System.out.println(getuserinfo.toString());
-        if (user != null) {
-            request.getSession().setAttribute("user",user);
+        githubuser githubuser = gp.getuserinfo(getaccesstoken);
+        if (githubuser != null) {
+            //        将user对象传入数据库
+            user user = new user();
+            user.setToken(UUID.randomUUID().toString());
+            user.setName(githubuser.getName());
+            user.setAccountid(String.valueOf(githubuser.getId()) );
+            user.setCreatetime(System.currentTimeMillis());
+            user.setModifiedtime(user.getModifiedtime());
+            usermapper.insertuser(user);
+            System.out.println(user);
+            request.getSession().setAttribute("user",githubuser);
             // 登陆成功
             return "redirect:/";
         } else {

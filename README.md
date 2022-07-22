@@ -96,4 +96,14 @@
 - cookie 相当于银行卡，在同一个浏览器登录成功后，浏览器就会将你的身份记住了，除非你主动提出消除cookie记录或者换浏览器登录（去其他银行）
 - 我们return index页面网址会显示最终的网址,后面可能跟一堆? &之类的，我们重定向更加简约
 - if 逻辑可以直接写在html页面上，页面也可以直接获取cookie，因为cookie这东西还想就是给页面用的
-- 
+- 目前实现了登录功能，但是每次服务器重启，所有用户“被迫下线”，我们不希望这样，所以需要借助数据库
+
+> 2022/7/22
+#### 实现点击数据导入数据库
+- 导入依赖
+- 用idea自带的数据库连接器，进行连接，connected type选成`embedded`
+- url连接需要加上 jdbc:h2:~/community`;OLD_INFORMATION_SCHEMA=TRUE`
+- 设置了一个新的快捷键 `shift + f `快速查找文件
+- 没有使用h2数据库了 😃,使用我熟悉的mysql数据库
+- 我可以在idea上面加入emoji啦 [插件](Yet another emoji support)
+- 操作数据库使用mybatis+mapper，真的改了好久，然后主键是自增的
