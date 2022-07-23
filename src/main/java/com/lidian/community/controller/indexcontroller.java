@@ -35,7 +35,6 @@ public class indexcontroller {
                     }
                     break;
                 }
-
             }
         }
         return "index";

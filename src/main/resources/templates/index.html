@@ -21,7 +21,10 @@
         </form>
         <ul class="navbar-nav nav navbar-right ">
             <li class="nav-item" th:if="${session.user== null}">
-                <a class="nav-link" href="https://github.com/login/oauth/authorize?client_id=f4ae598eeffaf516d993&redirect_uri=http://localhost:8080/callback"&scope=user&state=1>登录</a>
+                <a class="nav-link" href="https://github.com/login/oauth/authorize?client_id=f4ae598eeffaf516d993&redirect_uri=http://localhost:8080/callback&scope=user&state=1">登录</a>
+            </li>
+            <li class="nav-item" >
+                <a class="nav-link" th:href="@{/publish}">发布问题</a>
             </li>
 <!--            不为空则渲染下拉框-->
             <li class="nav-item dropdown" th:if="${session.user != null}">
