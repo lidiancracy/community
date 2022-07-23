@@ -61,6 +61,8 @@ public class Authorcontroller {
             user.setAccountid(String.valueOf(githubuser.getId()) );
             user.setCreatetime(System.currentTimeMillis());
             user.setModifiedtime(user.getModifiedtime());
+            user.setPic_uri(githubuser.getAvatar_url());
+            System.out.println(user);
             usermapper.insertuser(user);
 //            给浏览器cookie设置token
             response.addCookie(new Cookie("token",user.getToken()));

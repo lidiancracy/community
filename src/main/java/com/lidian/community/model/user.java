@@ -15,4 +15,5 @@ public class user {
     private String token;
     private Long createtime;
     private Long modifiedtime;
+    private String pic_uri;
 }
