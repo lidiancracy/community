@@ -3,9 +3,24 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lidian.community.mapper.questionMapper" >
-
+    <resultMap id="question"  type="com.lidian.community.model.question">
+        <id property="id" column="id"/>
+        <result property="title" column="title"></result>
+        <result property="desp" column="desc"></result>
+        <result property="tag" column="tags"></result>
+        <result property="createtime" column="create_time"></result>
+        <result property="modifytime" column="modify_time"></result>
+        <result property="viewcount" column="view_count"></result>
+        <result property="likecount" column="like_count"></result>
+        <result property="commentcount" column="comment_count"></result>
+    </resultMap>
 
     <insert id="insertq">
         insert into t_question ( title, `desc`, create_time, modify_time, creator, tags) VALUES (#{title},#{desp},#{createtime},#{modifytime},#{creator},#{tag})
     </insert>
+
+
+    <select id="getquestions" resultMap="question">
+        select * from t_question
+    </select>
 </mapper>

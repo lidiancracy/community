@@ -17,4 +17,6 @@ public interface usermapper {
     void insertuser(user user);
 
     user getuserbytoken(@Param("token") String token);
+
+    user getuserbyid(@Param("id") Integer id);
 }

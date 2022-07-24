@@ -3,12 +3,23 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.lidian.community.mapper.usermapper" >
-
+    <resultMap id="usermap" type="com.lidian.community.model.user">
+        <id property="id" column="id"></id>
+        <result property="accountid" column="account_id"></result>
+        <result property="createtime" column="create_time"></result>
+        <result property="modifiedtime" column="modify_time"></result>
+        <result property="name" column="name"></result>
+        <result property="token" column="token"></result>
+        <result property="pic_uri" column="pic_url"></result>
+    </resultMap>
 
     <insert id="insertuser">
         insert into t_user (account_id, name, token, create_time, modify_time,pic_url) values (#{accountid},#{name},#{token},#{createtime},#{modifiedtime},#{pic_uri})
     </insert>
-    <select id="getuserbytoken" resultType="com.lidian.community.model.user">
+    <select id="getuserbytoken" resultMap="usermap">
         select * from t_user where token=#{token}
+    </select>
+    <select id="getuserbyid" resultMap="usermap">
+        select * from t_user where id=#{id}
     </select>
 </mapper>

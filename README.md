@@ -1,4 +1,5 @@
-> 2022  7/20
+
+> > 2022  7/20
 
 - 我多看看别人的项目怎么写的，慢慢学习，自己可能写几天写了几个静态页面，没什么实际意义. 先把演过放开. 项目有视频优先，有文档其次，啥都没有直接跳过
 - 直接根据论坛项目[视频](https://www.bilibili.com/video/BV1r4411r7au?vd_source=afdbe5eeb7dd29283083f0417f15b5d0)
@@ -134,7 +135,39 @@ p21 goodnight
 也为空 😷 有点没搞懂，但是model 设置值直接`return html` 可以把值传给页面
 - 另外说说html的问题，我们习惯了th:text是王页面上加东西，但是比如input这样的输入框，你希望往输入框里面添加东西，是给他
 设置`th:value`而不是`th:text`
+- 接下來做的是完善index页面
 
+> 2022/7/24 
 
+bootstrap icon 需要导入`<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">`,这样才能
+直接使用i标签
 
+- 现有一个question类，但是我希望question表格和user表联动，于是我需要在question表上加一个user
+对象了，但是model里面的表格是和数据库一一对应的，本身就很完美了，需要添加其他的我在dto上面拓展
+- ok 👌 让我们重新理一下思路,我`直接`操作数据库表格是用mapper提供的方法，记住只用操作一个表，mapper可以提供多表查询
+但现在有了更好的解决办法:
+  - 我引入service层，service层就是用来引入多个单表mapper，从而实现多表联合查询，返回对象可以使dto，相当于是model的升级版
+  这样就可以实现多表查询了，而且思路很流畅
 
+- thymeleaf时间格式化`th:text=" ${#dates.format(question.createtime, 'yyyy/MM/dd HH:mm')}"`
+- 实现了index展示功能,tabnine不好用，卸载了
+- 使用debug确实能快速找bug，以后多用用
+- 下一步是做一个分页操作，视频讲了一个半小时我就直接用插件了
+  - ```<!--        分页-->
+    <dependency>
+    <groupId>com.github.pagehelper</groupId>
+    <artifactId>pagehelper-spring-boot-starter</artifactId>
+    <version>1.2.13</version>
+    </dependency>```
+    ```
+    ```
+    spring:
+    main:
+    allow-circular-references: true
+#### @RequestParam
+- 这里说明一下`public String index(@RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum`中注解的作用
+这种注解一般用于页面向控制层传递参数，不加注解必须前后端变量名一致才能传成功,加了可以自己设置映射,同时加了则get请求必须传参数(也可以设置`required`)
+#### @RequestBody
+- 用于控制层接收post请求
+
+- 分页还没弄好，好烦，我觉得应该是分页start那里的问题 😠  明天再处理吧 今天就到这里了，再写就不礼貌了

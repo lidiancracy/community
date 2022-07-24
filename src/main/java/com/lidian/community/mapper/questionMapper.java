@@ -4,6 +4,8 @@ import com.lidian.community.model.question;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @ClassName questionMapper
  * @Description TODO
@@ -13,4 +15,6 @@ import org.springframework.stereotype.Repository;
 @Mapper
 public interface questionMapper {
     void insertq(question question);
+
+    List<question> getquestions();
 }
